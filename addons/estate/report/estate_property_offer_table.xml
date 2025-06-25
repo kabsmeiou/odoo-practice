@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="estate_property_offer_table">
+                <div class="page">
+                <div t-if="property.state != 'new'" style="border: 1px solid #ccc; padding: 15px;">
+                    <h4 style="margin-top: 0;">Offers</h4>
+                    <table style="width: 100%; border-collapse: collapse;" border="1">
+                    <thead style="background-color: #f0f0f0;">
+                        <tr style="text-align: center; padding: 5px;">
+                        <th style="padding: 5px;">Offer Price</th>
+                        <th style="padding: 5px;">Buyer</th>
+                        <th style="padding: 5px;">Validity Days</th>
+                        <th style="padding: 5px;">Deadline</th>
+                        <th style="">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="property.property_offer_ids" t-as="offer" style="text-align: center; padding: 5px;">
+                        <td style="padding: 5px;"><span t-field="offer.price"/></td>
+                        <td style="padding: 5px;"><span t-field="offer.partner_id.name"/></td>
+                        <td style="padding: 5px;"><span t-field="offer.validity"/></td>
+                        <td style="padding: 5px;"><span t-field="offer.date_deadline"/></td>
+                        <td style="padding: 5px;">
+                            <span t-field="offer.status"
+                                t-att-style="'padding: 2px 6px; border-radius: 3px; color: white; ' +
+                                    ('background-color: green;' if offer.status == 'accepted' else
+                                    'background-color: red;' if offer.status == 'refused' else
+                                    'background-color: orange;')"/>
+                        </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                </div>
+    </template>
+</odoo>

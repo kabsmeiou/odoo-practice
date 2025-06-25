@@ -1,0 +1,25 @@
+<templates xml:space="preserve">
+    <t t-name="awesome_clicker.clicker_systray_items_template">
+        <Dropdown>
+            <button type="button" class="btn btn-secondary o_clicker_clicks_button">
+                Clicks: <ClickValue />
+            </button>
+            <t t-set-slot="content">
+                <div class="o_nav_entry px-2 d-flex flex-column gap-2">
+                    <button type="button" class="btn btn-primary o_clicker_clicks_button clicker-button"
+                        t-on-click="openClientAction">
+                        Open the Clicker Game
+                    </button>
+                    <button type="button" class="btn btn-secondary o_clicker_clicks_button clicker-button"
+                        t-on-click="() => clickService.buyBot('clickBots')">
+                        Buy a ClickBot
+                    </button>
+                    <p><span t-esc="clickService.trees.pearTree.count"/>x Pear Tree</p>
+                    <p><span t-esc="clickService.trees.cherryTree.count"/>x Cherry Tree</p>
+                    <p><span t-esc="clickService.fruits.pear.count"/>x Pear</p>
+                    <p class="mb-0"><span t-esc="clickService.fruits.cherry.count"/>x Cherry</p>
+                </div>
+            </t>
+        </Dropdown>
+    </t>
+</templates>

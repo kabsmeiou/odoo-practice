@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="estate_property_report_inherit" inherit_id="estate.estate_property_report">
+        <xpath expr="//div[@class='page']/*[2]" position="inside">
+            <p t-if="property.state == 'sold'" style="text-align: center; font-size: 14px; color: green; font-weight: bold; font-style: italic;">
+                !!! Congratulations! This property has been sold. Refer to the generated invoice for details. !!!
+            </p>
+        </xpath>
+    </template>
+</odoo>

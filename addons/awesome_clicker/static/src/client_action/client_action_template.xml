@@ -1,0 +1,88 @@
+<templates xml:space="preserve">
+    <t t-name="awesome_clicker.client_action_template">
+       <div class="p-4">
+            <div class="header pb-3">
+                <h1>Clicker Stats</h1>
+                <div class="d-flex gap-2 align-items-center">
+                    <p class="mb-0">Total Clicks: <ClickValue /></p>
+                    <button type="button" class="btn btn-primary o_clicker_clicks_button clicker-button">
+                        Increment
+                    </button>
+                </div>
+            </div>
+            <Notebook orientation="'vertical'">
+                <t t-set-slot="page_1" title="'Clicks'" isVisible="true">
+                    <div class="container px-4">
+                        <!-- bots section -->
+                        <div class="d-flex flex-column gap-2 mt-4">
+                            <h2>Click Bots</h2>
+                            <div class="d-flex flex-row gap-4">
+                                <div>
+                                    <p class="mb-0"><t t-esc="clickService.bots.clickBots.count"/>x ClickBots (10 Clicks / 10 seconds)</p>
+                                    <button type="button" class="btn btn-primary o_clicker_bots_button" t-on-click="() => clickService.buyBot('clickBots')" t-att-disabled="clickService.clickCount &lt; clickService.bots.clickBots.price ? true : false">
+                                        Buy Bot (1000 Clicks)
+                                    </button>
+                                </div>
+                                <div>
+                                    <p class="mb-0"><t t-esc="clickService.bots.bigClickBots.count"/>x Big ClickBots (100 Clicks / 10 seconds)</p>
+                                    <button type="button" class="btn btn-primary o_clicker_bots_button" t-on-click="() => clickService.buyBot('bigClickBots')" t-att-disabled="clickService.clickCount &lt; clickService.bots.bigClickBots.price ? true : false">
+                                        Buy Bot (5000 Clicks)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column gap-2 mt-4">
+                            <h2>Power Multiplier</h2>
+                            <div class="d-flex flex-row gap-4">
+                                <div>
+                                    <p class="mb-0">Power: <t t-esc="clickService.power.level"/></p>
+                                    <button type="button" class="btn btn-primary o_clicker_bots_button" t-on-click="() => clickService.buyPowerUpgrade()" t-att-disabled="clickService.clickCount &lt; clickService.power.price ? true : false">
+                                        Buy Upgrade (100000 Clicks)
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+                <t t-set-slot="page_2" title="'Trees and Fruits'" isVisible="true">
+                    <!-- tree section -->
+                    <div class="container px-4">
+                        <div class="d-flex flex-column gap-2 mt-4">
+                            <h2>Trees</h2>
+                            <div class="d-flex flex-row gap-4">
+                                <t t-foreach="Object.keys(clickService.trees)" t-as="treeKey" t-key="treeKey">
+                                    <div>
+                                        <p class="mb-0">
+                                            <t t-esc="clickService.trees[treeKey].count"/>x 
+                                            <t t-esc="treeKey.replace('Tree', '')"/> Trees (1 Fruit / 30 seconds)
+                                        </p>
+                                        <button type="button"
+                                                class="btn btn-primary o_clicker_trees_button"
+                                                t-on-click="() => clickService.buyTree(treeKey)"
+                                                t-att-disabled="clickService.clickCount &lt; clickService.trees[treeKey].price">
+                                            Buy Tree (<t t-esc="clickService.trees[treeKey].price"/> Clicks)
+                                        </button>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                        <!-- fruit section -->
+                        <div class="d-flex flex-column gap-2 mt-4">
+                            <h2>Fruits</h2>
+                            <div class="d-flex flex-row gap-2">
+                                <t t-foreach="Object.keys(clickService.fruits)" t-as="fruitKey" t-key="fruitKey">
+                                    <div class="card">
+                                        <p class="card-header"><t t-esc="fruitKey.replace('Fruit', '')"/> Tree</p>
+                                        <div class="card-body">
+                                            <p class="card-text mb-0">Fruits: <t t-esc="clickService.fruits[fruitKey].count"/></p>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </Notebook>
+       </div>
+    </t>
+</templates>

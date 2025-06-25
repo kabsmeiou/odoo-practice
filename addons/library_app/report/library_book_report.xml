@@ -1,0 +1,12 @@
+<odoo>
+    <record id="action_report_library_book" model="ir.actions.report">
+        <field name="name">Book Publisher Report</field>
+        <field name="model">library.staff</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">library_app.library_book_report</field>
+        <field name="report_file">library_app.library_book_report</field>
+        <field name="binding_model_id" ref="model_library_staff"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Book Publisher - %s' % (object.name)</field>
+    </record>
+</odoo>

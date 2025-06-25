@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+        <record id="view_library_staff_form" model="ir.ui.view">
+            <field name="name">library.staff.form</field>
+            <field name="model">library.staff</field>
+            <field name="arch" type="xml">
+                <form string="Library Staff Form">
+                    <sheet>
+                        <group>
+                            <field name="partner_id" string="Name"/>
+                            <field name="job"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_library_staff_list" model="ir.ui.view">
+            <field name="name">library.staff.kanban</field>
+            <field name="model">library.staff</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="partner_id"/>
+                    <field name="job"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('res.partner', 'avatar_128', record.partner_id.raw_value)" alt="Image"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="oe_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <ul>
+                                        <li>Job: <field name="job"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+    </data>
+</odoo>

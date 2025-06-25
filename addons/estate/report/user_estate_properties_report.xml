@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="user_estate_properties_report">
+        <t t-foreach="docs" t-as="salesman">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Salesman: <span t-field="salesman.name"/></h2>
+                    </div>
+                    <t t-foreach="salesman.property_ids" t-as="property">
+                    
+                        <h4>Property: <span t-field="property.name"/></h4>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <tr>
+                                <td style="width: 50%; padding: 10px;">
+                                    <strong>Expected Price:</strong> <span t-field="property.expected_price"/>
+                                </td>
+                                <td style="width: 50%; padding: 10px;">
+                                    <strong>State:</strong>
+                                    <span t-field="property.state"
+                                            t-att-style="'padding: 5px 10px; border-radius: 5px; color: white; ' +
+                                            ('background-color: green;' if property.state == 'sold' else
+                                            'background-color: orange;' if property.state == 'offer_received' else
+                                            'background-color: blue;' if property.state == 'offer_accepted' else
+                                            'background-color: gray;')"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <t t-if="property.state != 'new'">
+                            <t t-call="estate.estate_property_offer_table"/>
+                        </t>
+                        <div t-else="" 
+                            style="text-align: center; background-color: #e0f0ff; padding: 10px; margin-bottom: 20px; border: 1px solid #b3d7ff;">
+                        &#9432; No offers have been received yetT-T
+                        </div>
+                        <br/><br/>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

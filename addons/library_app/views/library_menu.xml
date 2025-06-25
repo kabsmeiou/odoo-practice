@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <!-- App menu -->
+        <menuitem id="menu_library" name="Library" />
+
+        <!-- Action to open the Book list -->
+        <record id="action_library_book" model="ir.actions.act_window">
+            <field name="name">Library Books</field>
+            <field name="res_model">library.book</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        
+        <!-- Menu item to open the Book list defined above -->
+        <menuitem id="menu_library_book"
+        name="Books"
+        parent="menu_library"
+        action="action_library_book"
+        />
+
+        <!-- Action to open the Staff list -->
+        <record id="action_library_staff" model="ir.actions.act_window">
+            <field name="name">Library Staff</field>
+            <field name="res_model">library.staff</field>
+            <field name="view_mode">kanban,form</field>
+        </record>
+        <menuitem id="menu_library_staff_list" 
+        name="Staff" 
+        parent="menu_library" 
+        action="action_library_staff"
+        />
+    </data>
+</odoo>

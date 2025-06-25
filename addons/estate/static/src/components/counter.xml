@@ -1,0 +1,6 @@
+<t t-name="estate.Counter" owl="1">
+    <div>
+        <span t-esc="state.value"/>
+        <button t-on-click="increment">Increment</button>
+    </div>
+</t>

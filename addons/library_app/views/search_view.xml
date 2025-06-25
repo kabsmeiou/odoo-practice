@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record id="view_search_book" model="ir.ui.view">
+            <field name="name">Book Search</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <search string="Search Book">
+                    <field name="name" string="Book Title"/>
+                    <field name="author_ids" />
+                    <field name="publisher_id" />
+                    <field name="date_published" />
+                    <field name="isbn" />
+
+                    <filter name="active_books" string="Active Books" domain="[('active', '=', True)]"/>
+                    <filter name="inactive_books" string="Inactive Books" domain="[('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

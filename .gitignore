@@ -1,0 +1,13 @@
+postgresql/
+etc/odoo-server.log
+etc/addons/
+etc/sessions/
+etc/filestore/
+enterprise/
+enterprise17/
+etc/
+test/
+entrypoint.sh
+*.md
+*.sh
+.vscode/

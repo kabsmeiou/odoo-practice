@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:17
+    user: root
+    environment:
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo18@2023
+      - POSTGRES_DB=postgres
+    restart: always             # run as a service
+    volumes:
+        - ./postgresql:/var/lib/postgresql/data
+
+  odoo18:
+    image: odoo:18
+    user: root
+    depends_on:
+      - db
+    ports:
+      - "10017:8069"
+      - "20017:8072" # live chat
+    tty: true
+    command: odoo --dev=all
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo18@2023
+    volumes:
+      #- /etc/timezone:/etc/timezone:ro
+      #- /etc/localtime:/etc/localtime:ro
+      # - ./entrypoint.sh:/entrypoint.sh
+      - ./addons:/mnt/extra-addons
+      - ./etc:/etc/odoo
+      - ./enterprise:/mnt/enterprise
+    restart: always             # run as a service
+    
