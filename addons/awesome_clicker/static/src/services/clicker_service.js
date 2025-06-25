@@ -16,7 +16,7 @@ const clickerService = {
 
         setInterval(() => {
             browser.localStorage.setItem("clicker_state", JSON.stringify(clickerModel));
-        }, 1000 * 3); // Save every 10 seconds
+        }, 1000 * 8); // Save every 8 seconds
 
         setInterval(() => {
             clickerModel.harvestFruits();
